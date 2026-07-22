@@ -106,6 +106,8 @@ nav:
       - Managed: components/db/managed.md
     - UX & API:
       - Frontend: components/ux-api/frontend.md
+      - Local development: components/ux-api/local-dev.md
+      - Tech stack: components/ux-api/tech-stack.md
       - React Rewrite: components/ux-api/react-rewrite.md
       - Roles: components/ux-api/roles.md
       - Permissions: components/ux-api/permissions.md
