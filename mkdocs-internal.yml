@@ -30,11 +30,14 @@ nav:
     - Design: architecture/design.md
   - Components:
     - Processor:
-      - Disk Cleanup: components/processor/disk-cleanup.md
       - Atomizer: components/processor/atomizer.md
+      - Languages and plugins: components/processor/languages-and-plugins.md
+      - Data flow: components/processor/data-flow.md
+      - Queue workers: components/processor/queue-workers.md
+      - JSON Mapping: components/processor/json-mapping.md
       - Probe upgrading: components/processor/probe-upgrading.md
       - ECR on ECS: components/processor/ecr-on-ecs.md
-      - JSON Mapping: components/processor/json-mapping.md
+      - Disk Cleanup: components/processor/disk-cleanup.md
     - Database:
       - Stub: components/db/stub.md
       - Database: components/db/database.md

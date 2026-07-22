@@ -8,47 +8,39 @@ last_reviewed: 2026-07-22
 
 # Atomizer
 
-Server-side processor that atomizes VeriLib repositories — running probe tools, enriching atom metadata, and preparing JSON structure for the platform.
+Queue-based processor for VeriLib repositories: clone/upload to S3, run language probes, parse Schema 2.0 JSON, and persist atoms for the web app.
 
 | | |
 | --- | --- |
-| **Repo** | [Beneficial-AI-Foundation/verilib-atomizer](https://github.com/Beneficial-AI-Foundation/verilib-atomizer) |
-| **Owner** | _TBD_ |
+| **Repo** | [Beneficial-AI-Foundation/verilib-atomizer](https://github.com/Beneficial-AI-Foundation/verilib-atomizer) (private) |
+| **Runtime** | Python 3.10+, RabbitMQ consumers, Docker-out-of-Docker probes on ECS-on-EC2 |
 | **Status** | active |
 
-## Overview
+## What this repo owns
 
-The atomizer is the core **processor** component. When contributors deploy via [verilib-cli](../../reference/scripts-and-cli.md), the platform queues atomization jobs that:
+| Owns | Does not own |
+| --- | --- |
+| Upload + atomize workers | Web UX / certify UI ([frontend](../ux-api/frontend.md)) |
+| Language plugins + probe orchestration | Certificate probe worker ([certificates](../cert/cert-queue.md)) |
+| S3 handoff of repo trees / probe output | CLI local atomize ([verilib-cli](../../reference/scripts-and-cli.md)) |
+| Persist atoms / deps / statuses to MySQL | Science-team probe *source* repos (linked only) |
 
-- Run probe extraction (Verus, Aeneas, etc.)
-- Produce `atoms.json`, stubs, and enriched metadata
-- Map results into the VeriLib JSON schema
+Legacy DB-polling (`main.py`) may still exist in older deployments; production is RabbitMQ consumers (`scripts/run_upload_processor.py`, `scripts/run_atomize_processor.py`).
 
-It integrates with science-team probe tools ([probe](https://github.com/Beneficial-AI-Foundation/probe), [probe-verus](https://github.com/Beneficial-AI-Foundation/probe-verus), [probe-aeneas](https://github.com/Beneficial-AI-Foundation/probe-aeneas)) built by the formal verification team.
+## Hub pages
 
-## Install
-
-Full setup and deployment details live in the repository README:
-
-```bash
-git clone https://github.com/Beneficial-AI-Foundation/verilib-atomizer.git
-cd verilib-atomizer
-# See repo README for install and run instructions
-```
-
-## Related processor components
-
+- [Languages and plugins](languages-and-plugins.md)
+- [Data flow](data-flow.md)
+- [Queue workers](queue-workers.md)
+- [JSON mapping](json-mapping.md) — Schema 2.0 envelope
 - [Probe upgrading](probe-upgrading.md)
 - [ECR on ECS](ecr-on-ecs.md)
-- [JSON Mapping](json-mapping.md)
-- [Disk Cleanup](disk-cleanup.md)
+- [Disk cleanup](disk-cleanup.md)
 
-## Related
+## Handoff from frontend
 
-- [System map](../../architecture/system-map.md)
-- [verilib-cli](../../reference/scripts-and-cli.md) — local `atomize` command
-- [Glossary](../../project/glossary.md) — verification statuses and colors
+Pending uploads and reatomize actions publish queue messages. Private GitHub tokens arrive **on the message** (encrypted), not via a MySQL lookup — see [queue workers](queue-workers.md) and upstream `docs/private-github-upload-processor.md`.
 
 ## Documentation source of truth
 
-Detailed runbooks and configuration: **[verilib-atomizer README](https://github.com/Beneficial-AI-Foundation/verilib-atomizer/blob/main/README.md)**
+**[verilib-atomizer README](https://github.com/Beneficial-AI-Foundation/verilib-atomizer/blob/main/README.md)** and [`deploy/README.md`](https://github.com/Beneficial-AI-Foundation/verilib-atomizer/blob/main/deploy/README.md).
