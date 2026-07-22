@@ -81,7 +81,13 @@ nav:
     - API specification: reference/api-specification.md
     - Configuration and environment variables: reference/configuration-and-environment-variables.md
     - Error codes: reference/error-codes.md
-    - Scripts and CLI: reference/scripts-and-cli.md
+    - Scripts and CLI:
+      - Overview: reference/scripts-and-cli.md
+      - Install: reference/cli/install.md
+      - Repo commands: reference/cli/repo-commands.md
+      - Structure commands: reference/cli/structure-commands.md
+      - Workflows: reference/cli/workflows.md
+      - Config and files: reference/cli/config-and-files.md
     - Repo list: reference/repo-list.md
     - Server list: internal/server-list.md
   - Contributing:

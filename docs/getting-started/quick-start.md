@@ -6,13 +6,13 @@ last_reviewed: 2026-07-22
 
 # Quick start
 
-Get started with VeriLib in a few minutes using [verilib-cli](https://github.com/Beneficial-AI-Foundation/verilib-cli).
+Get authenticated and connected to VeriLib with [verilib-cli](https://github.com/Beneficial-AI-Foundation/verilib-cli) in a few minutes.
 
 ## Prerequisites
 
 - Git
-- Docker (recommended for verification commands) or local probe-verus setup
-- A VeriLib account and API key from [verilib.org](https://verilib.org)
+- Docker (recommended for verification commands) **or** a local [probe-verus](https://github.com/Beneficial-AI-Foundation/probe-verus) install
+- A VeriLib account / API key from [verilib.org](https://verilib.org)
 
 ## 1. Install the CLI
 
@@ -22,20 +22,20 @@ Get started with VeriLib in a few minutes using [verilib-cli](https://github.com
     curl -sSL https://github.com/Beneficial-AI-Foundation/verilib-cli/releases/latest/download/verilib-cli-installer.sh | sh
     ```
 
-=== "Homebrew (macOS)"
+=== "Homebrew"
 
     ```bash
     brew tap Beneficial-AI-Foundation/verilib-cli
     brew install verilib-cli
     ```
 
-=== "npm (cross-platform)"
+=== "npm"
 
     ```bash
     npm install -g verilib-cli
     ```
 
-See the full [Scripts and CLI](../reference/scripts-and-cli.md) page for other install options.
+See [Install](../reference/cli/install.md) for Windows, MSI, and binary archives.
 
 ## 2. Authenticate
 
@@ -44,25 +44,21 @@ verilib-cli auth
 verilib-cli status
 ```
 
-Your API key is stored in the system keyring (or `~/.verilib/credentials.json` on Linux with file storage).
+API keys go in the system keyring (or `~/.verilib/credentials.json` on Linux with file storage). Never commit credentials.
 
 ## 3. Initialize a repository
 
-From an existing VeriLib repository ID:
-
 ```bash
+# Existing VeriLib repository
 verilib-cli init --id <repository-id>
-```
 
-Or create a new repository (auto-detects git URL from the current directory):
-
-```bash
+# Or create from the current git checkout
 verilib-cli init
 ```
 
-## 4. Verification workflow (optional)
+Choose **Docker** (recommended) or **Local** when prompted for probe execution mode.
 
-If your project uses Verus or probe-verus:
+## 4. Optional — verification structure
 
 ```bash
 verilib-cli create
@@ -71,23 +67,22 @@ verilib-cli specify
 verilib-cli verify
 ```
 
-During `init`, choose **Docker** (recommended) or **Local** execution mode for verification commands.
-
 ## 5. Sync with the server
 
 ```bash
-verilib-cli pull      # Pull latest from server
-verilib-cli deploy    # Push local changes
+verilib-cli pull
+verilib-cli deploy
 ```
 
 ## Success criteria
 
-- `verilib-cli status` shows you are authenticated
-- `.verilib/config.json` exists in your project
-- Your repository appears on [verilib.org](https://verilib.org) after deploy
+- `verilib-cli status` shows authenticated
+- `.verilib/config.json` exists in the project
+- After deploy, the repository appears on [verilib.org](https://verilib.org)
 
 ## Next steps
 
-- [Full local stack](full-local-stack.md) — run platform services locally
-- [Glossary](../project/glossary.md) — verification statuses and colors
-- [Frontend](../components/ux-api/frontend.md) — web UI overview
+- [CLI index](../reference/scripts-and-cli.md)
+- [Workflows](../reference/cli/workflows.md) — CI and server patterns
+- [Full local stack](full-local-stack.md) — platform services
+- [Glossary](../project/glossary.md)
