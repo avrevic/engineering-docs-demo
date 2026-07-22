@@ -8,52 +8,56 @@ last_reviewed: 2026-07-22
 
 # Cert Queue
 
-Certificate validation worker for VeriLib — processes specification and verification certificates through mainnet, testnet, and Docker Hub flows.
+Certificate subsystem for VeriLib — probe Docker images plus RabbitMQ workers that validate certified repo snapshots and optionally anchor them on-chain.
 
 | | |
 | --- | --- |
-| **Repo** | [Beneficial-AI-Foundation/local_validate](https://github.com/Beneficial-AI-Foundation/local_validate) |
-| **Owner** | _TBD_ |
+| **Repo** | [Beneficial-AI-Foundation/local_validate](https://github.com/Beneficial-AI-Foundation/local_validate) (private; README still branded around dalek-lite probe Docker) |
 | **Status** | active |
 
-## Overview
-
-The **local_validate** repository implements the certificate (**CERT**) subsystem. When contributors run `verilib-cli specify` or the platform validates proofs, certificate jobs are queued and processed by this worker.
-
-Key flows documented in sibling pages:
-
-- [Mainnet](mainnet.md) — production certificate validation
-- [Testnet](testnet.md) — staging / test validation
-- [Docker Hub](docker-hub.md) — container image verification
-- [Verify it yourself](verify-it-yourself.md) — self-service verification
-
-## Install
-
-```bash
-git clone https://github.com/Beneficial-AI-Foundation/local_validate.git
-cd local_validate
-# See repo README for worker setup
-```
-
-## How it fits
+## End-to-end (Certify click)
 
 ```mermaid
 flowchart LR
-  cli[verilib-cli specify]
-  api[VeriLib API]
-  queue[Cert Queue]
-  worker[local_validate worker]
-  cli --> api
-  api --> queue
-  queue --> worker
+  ui[UI Certify]
+  php[PHP CertificateCloneService]
+  db[(MySQL certificates pending)]
+  mq[validate.request]
+  worker[validate_processor]
+  s3[(S3 manifest)]
+  resp[validate.response]
+  php2[PHP sole DB writer]
+  ui --> php --> db
+  php --> mq --> worker
+  worker --> s3
+  worker --> resp --> php2 --> db
 ```
 
-## Related
+1. User with **Certifier** permission clicks Certify ([frontend](../ux-api/permissions.md)).
+2. PHP deep-clones repo rows/files, inserts `certificates` with **`status=pending`**, publishes `validate.request`.
+3. Python worker (DB-free) builds/runs the probe image, uploads `probe-manifest-complete.json` to S3, streams `validate.livelog`, publishes `validate.response` (optional Sepolia anchor).
+4. PHP consumes the response and is the **sole writer** of certificate rows (`ready` / error / chain fields).
 
-- [System map](../../architecture/system-map.md)
-- [verilib-cli specify](../../reference/scripts-and-cli.md)
-- [Glossary](../../project/glossary.md) — specification status
+Mainnet promotion is a **separate** `promote.request` → `promote_processor` pipeline.
+
+## Hub pages
+
+- [Probe Docker image](probe-docker-image.md) — build, manifest fetch, badges
+- [Worker](worker.md) — `validate_processor` / `promote_processor`, env names
+- [Testnet](testnet.md) — Sepolia on validate path
+- [Mainnet](mainnet.md) — promote path / `Certify.sol`
+- [Docker Hub](docker-hub.md) — publish digests
+- [Verify it yourself](verify-it-yourself.md) — reproduce a published image
+
+## Cross-repo must-match
+
+| Value | Worker | Frontend |
+| --- | --- | --- |
+| RabbitMQ vhost | `RABBITMQ_VHOST` (required, no default) | same |
+| Cert manifest bucket | `S3_BUCKET` | `S3_CERT_BUCKET` |
+| Queue topology args | `broker/topology.py` | `BaseQueue.php` (same PR if changed) |
 
 ## Documentation source of truth
 
-Detailed worker configuration and deployment: **[local_validate README](https://github.com/Beneficial-AI-Foundation/local_validate/blob/main/README.md)**
+- Root [README](https://github.com/Beneficial-AI-Foundation/local_validate/blob/main/README.md) — probe image
+- [`worker/README.md`](https://github.com/Beneficial-AI-Foundation/local_validate/blob/main/worker/README.md) — queue workers

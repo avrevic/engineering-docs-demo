@@ -134,9 +134,11 @@ nav:
       - Security: components/devops/security.md
   - Certificates:
     - Cert Queue: components/cert/cert-queue.md
+    - Probe Docker image: components/cert/probe-docker-image.md
+    - Worker: components/cert/worker.md
+    - Testnet: components/cert/testnet.md
     - Mainnet: components/cert/mainnet.md
     - Docker Hub: components/cert/docker-hub.md
-    - Testnet: components/cert/testnet.md
     - Verify it yourself: components/cert/verify-it-yourself.md
   - Guides:
     - Deploy to staging: guides/deploy-to-staging.md
