@@ -1,0 +1,162 @@
+site_name: VeriLib Documentation
+site_url: https://docs.verilib.org
+site_description: Documentation for VeriLib — the open-source library for formally verified code.
+copyright: Copyright &copy; Beneficial AI Foundation
+
+repo_url: https://github.com/Beneficial-AI-Foundation/engineering-docs
+repo_name: Beneficial-AI-Foundation/engineering-docs
+edit_uri: edit/main/docs/
+
+exclude_docs: |
+  internal/
+
+extra_css:
+  - stylesheets/extra.css
+
+theme:
+  name: material
+  language: en
+  logo: assets/logo-mark.svg
+  favicon: assets/logo-mark.svg
+  font:
+    text: Inter
+  palette:
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - tables
+  - toc:
+      permalink: true
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Home: index.md
+  - Project:
+    - About VeriLib: project/about.md
+    - Documentation hub: project/documentation-hub.md
+    - License: project/license.md
+    - Code of conduct: project/code-of-conduct.md
+    - Governance / maintainers: project/governance.md
+    - Roadmap: project/roadmap.md
+    - Glossary: project/glossary.md
+    - Support matrix: project/support-matrix.md
+  - Getting started:
+    - Quick start: getting-started/quick-start.md
+    - Full local stack: getting-started/full-local-stack.md
+    - First contribution: getting-started/first-contribution.md
+    - Troubleshooting: getting-started/troubleshooting.md
+    - Onboarding: getting-started/onboarding.md
+  - Architecture:
+    - System overview: architecture/system-overview.md
+    - System map: architecture/system-map.md
+    - Data flows: architecture/data-flows.md
+    - ADRs: architecture/adrs.md
+    - Design: architecture/design.md
+  - Components:
+    - Processor:
+      - Disk Cleanup: components/processor/disk-cleanup.md
+      - Atomizer: components/processor/atomizer.md
+      - Probe upgrading: components/processor/probe-upgrading.md
+      - ECR on ECS: components/processor/ecr-on-ecs.md
+      - JSON Mapping: components/processor/json-mapping.md
+    - Database:
+      - Stub: components/db/stub.md
+      - Database: components/db/database.md
+      - Backup: components/db/backup.md
+      - Scheme: components/db/scheme.md
+      - Managed: components/db/managed.md
+    - UX & API:
+      - Frontend: components/ux-api/frontend.md
+      - React Rewrite: components/ux-api/react-rewrite.md
+      - Roles: components/ux-api/roles.md
+      - Permissions: components/ux-api/permissions.md
+      - Customization: components/ux-api/customization.md
+      - Signal Shot: components/ux-api/signal-shot.md
+      - API spec: components/ux-api/api-spec.md
+      - Rate limit: components/ux-api/rate-limit.md
+      - Bugs: components/ux-api/bugs.md
+    - DevOps:
+      - Logging / Grafana: components/devops/logging-grafana.md
+      - Alert System: components/devops/alert-system.md
+      - Netdata: components/devops/netdata.md
+      - Betterstack: components/devops/betterstack.md
+      - Dev Ops: components/devops/dev-ops.md
+      - Scripts: components/devops/scripts.md
+      - Local env: components/devops/local-env.md
+      - Deployment procedure: components/devops/deployment-procedure.md
+      - Incident management: components/devops/incident-management.md
+      - Performance: components/devops/performance.md
+      - Scalability: components/devops/scalability.md
+      - Security: components/devops/security.md
+  - Certificates:
+    - Cert Queue: components/cert/cert-queue.md
+    - Mainnet: components/cert/mainnet.md
+    - Docker Hub: components/cert/docker-hub.md
+    - Testnet: components/cert/testnet.md
+    - Verify it yourself: components/cert/verify-it-yourself.md
+  - Guides:
+    - Deploy to staging: guides/deploy-to-staging.md
+    - Deploy to production: guides/deploy-to-production.md
+    - Rotate credentials: guides/rotate-credentials.md
+    - Add a new service: guides/add-a-new-service.md
+    - Database backup and restore: guides/database-backup-and-restore.md
+    - Run incident response: guides/run-incident-response.md
+  - Reference:
+    - API specification: reference/api-specification.md
+    - Configuration and environment variables: reference/configuration-and-environment-variables.md
+    - Error codes: reference/error-codes.md
+    - Scripts and CLI: reference/scripts-and-cli.md
+    - Repo list: reference/repo-list.md
+  - Contributing:
+    - How to write docs: contributing/how-to-write-docs.md
+    - PR checklist: contributing/pr-checklist.md
+    - Testing guide: contributing/testing-guide.md
+    - Release process: contributing/release-process.md
+    - Contributors: contributing/contributors.md
+    - Issues: contributing/issues.md
+  - Releases:
+    - Changelog: releases/changelog.md
+    - Migration guides: releases/migration-guides.md
+    - Compatibility matrix: releases/compatibility-matrix.md
+  - Community:
+    - Comms: community/comms.md
+    - Contributors: community/contributors.md

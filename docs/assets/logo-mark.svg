@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" role="img" aria-label="VeriLib">
+  <!-- Cropped from verilib.org logo checkmark, centered in square -->
+  <g transform="translate(4.5, -4.5)">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M33.9111 13.7906L21.8949 44.9874L16.3337 30.9315H10.293L16.8622 47.5032L16.9351 47.7189C17.9319 50.2586 19.2326 51.5285 20.8373 51.5285H22.916C23.5968 51.5285 24.1559 51.3128 24.5936 50.8816C25.0312 50.4263 25.6269 49.3002 26.3806 47.5032L39.454 13.7906H33.9111Z" fill="#53B333"/>
+  </g>
+</svg>

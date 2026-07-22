@@ -1,0 +1,61 @@
+# PROCESSOR
+- Disk Cleanup
+- Atomizer
+- Probe upgrading
+- ECR on ECS
+- JSON Mapping
+
+# DB
+- Stub
+- Database
+- Backup
+- Scheme
+- Managed
+
+# CERT
+- Cert Queue
+- Mainnet
+- Docker Hub
+- Testnet
+- Verify it yourself
+
+# UX+API
+- Roles
+- React Rewrite
+- Permissions
+- Customization
+- Frontend
+- Bugs
+- Signal Shot
+- API spec
+- Design
+- Rate limit
+
+# OPS
+- Backlog
+- Ops
+- Server list
+- Repo list
+- Ideas
+- Account list
+- Onboarding
+- Issues
+- Contributors
+- Comms
+- Wiki
+
+# DEV-OPS
+- Logging/Grafana
+- Alert System
+- Credentials
+- Dev Ops
+- Netdata
+- Scripts
+- Local env
+- Deployment procedure
+- Betterstack
+- Incident management
+- Performance
+- Scalability
+- Security
+- Private repos

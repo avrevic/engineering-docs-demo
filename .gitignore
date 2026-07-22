@@ -1,0 +1,10 @@
+.venv/
+venv/
+site/
+site-internal/
+.env
+oauth2-proxy/.env
+oauth2-proxy/allowed-emails.txt
+__pycache__/
+*.pyc
+.DS_Store

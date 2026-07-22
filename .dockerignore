@@ -1,0 +1,9 @@
+site/
+.git/
+.gitignore
+*.md.bak
+__pycache__/
+*.pyc
+.env
+oauth2-proxy/.env
+.DS_Store

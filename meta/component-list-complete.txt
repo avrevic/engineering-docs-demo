@@ -1,0 +1,110 @@
+# PROJECT
+- About Verilib
+- License
+- Code of conduct
+- Governance / maintainers
+- Roadmap (public)
+- Glossary
+- Support matrix
+
+# GETTING STARTED
+- Quick start
+- Full local stack
+- First contribution
+- Troubleshooting
+- Onboarding
+
+# ARCHITECTURE
+- System overview
+- System map (repos & services)
+- Data flows
+- ADRs
+- Design
+
+# PROCESSOR
+- Disk Cleanup
+- Atomizer
+- Probe upgrading
+- ECR on ECS
+- JSON Mapping
+
+# DB
+- Stub
+- Database
+- Backup
+- Scheme
+- Managed
+
+# CERT
+- Cert Queue
+- Mainnet
+- Docker Hub
+- Testnet
+- Verify it yourself
+
+# UX+API
+- Frontend
+- React Rewrite
+- Roles
+- Permissions
+- Customization
+- Signal Shot
+- API spec
+- Rate limit
+- Bugs
+
+# DEV-OPS
+- Logging/Grafana
+- Alert System
+- Netdata
+- Betterstack
+- Dev Ops
+- Scripts
+- Local env
+- Deployment procedure
+- Incident management
+- Performance
+- Scalability
+- Security
+
+# GUIDES
+- Deploy to staging
+- Deploy to production
+- Rotate credentials
+- Add a new service
+- Database backup and restore
+- Run incident response
+
+# REFERENCE
+- API specification
+- Configuration and environment variables
+- Error codes
+- Scripts and CLI
+- Server list
+- Repo list
+
+# CONTRIBUTING
+- How to write docs
+- PR checklist
+- Testing guide
+- Release process
+- Contributors
+- Issues
+
+# RELEASES
+- Changelog
+- Migration guides
+- Compatibility matrix
+
+# COMMUNITY
+- Comms
+- Contributors
+
+# INTERNAL ONLY
+- Backlog
+- Ideas
+- Ops
+- Account list
+- Credentials
+- Private repos
+- Wiki
