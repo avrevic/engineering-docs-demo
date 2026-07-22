@@ -6,23 +6,21 @@ last_reviewed: 2026-07-22
 
 # Repo list
 
-Public index of VeriLib **platform** repositories. For the full organization inventory (139+ repos including science-team verification projects), see the internal **Server list** page on the internal docs site (`docs/internal/server-list.md`).
+Public index of VeriLib **platform** repositories. For the full organization inventory, see the internal **Server list** on the internal docs site.
 
 ## Platform repositories
 
 | Repository | Component | Description |
 | --- | --- | --- |
-| [verilib-frontend](https://github.com/Beneficial-AI-Foundation/verilib-frontend) | UX & API | Web UI for [verilib.org](https://verilib.org) |
-| [verilib-cli](https://github.com/Beneficial-AI-Foundation/verilib-cli) | CLI | Command-line tool for repos and verification |
-| [verilib-atomizer](https://github.com/Beneficial-AI-Foundation/verilib-atomizer) | Processor | Server-side atomization pipeline |
-| [local_validate](https://github.com/Beneficial-AI-Foundation/local_validate) | Certificates | Certificate validation worker |
-| [engineering-docs](https://github.com/Beneficial-AI-Foundation/engineering-docs) | Documentation | This documentation hub |
+| [verilib-cli](https://github.com/Beneficial-AI-Foundation/verilib-cli) | CLI | Public Rust CLI: auth, init, deploy/pull, create/atomize/specify/verify |
+| [verilib-frontend](https://github.com/Beneficial-AI-Foundation/verilib-frontend) | UX & API | PHP/MySQL web app + React graph UI; enqueues upload/atomize/validate |
+| [verilib-atomizer](https://github.com/Beneficial-AI-Foundation/verilib-atomizer) | Processor | Upload/atomize RabbitMQ workers; probe plugins; S3 + MySQL atoms |
+| [local_validate](https://github.com/Beneficial-AI-Foundation/local_validate) | Certificates | Probe Docker images + DB-free validate/promote workers |
+| [engineering-docs](https://github.com/Beneficial-AI-Foundation/engineering-docs) | Documentation | This MkDocs hub |
 
 ## Organization
 
-All repositories live under **[Beneficial-AI-Foundation](https://github.com/Beneficial-AI-Foundation)** on GitHub.
-
-Science-team repos (probe, probe-verus, vericoding, benchmarks, individual verification projects) are documented in their own README files — not indexed here in full.
+All under **[Beneficial-AI-Foundation](https://github.com/Beneficial-AI-Foundation)**. Science-team probe and project repos are documented in their own READMEs.
 
 ## Related
 

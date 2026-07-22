@@ -6,59 +6,62 @@ last_reviewed: 2026-07-22
 
 # System map
 
-High-level view of VeriLib platform repositories and how they connect. Science-team verification tools (probe, probe-verus, benchmarks) live in separate repos under [Beneficial-AI-Foundation](https://github.com/Beneficial-AI-Foundation) and feed into the atomization pipeline.
+Verified end-to-end map of VeriLib **platform** repositories. Science-team probe tools are linked from Processor / Certificates docs but are not first-class hub sections.
 
 ## Platform repositories
 
 | Component | Repository | Role |
 | --- | --- | --- |
-| Frontend | [verilib-frontend](https://github.com/Beneficial-AI-Foundation/verilib-frontend) | Web UI at [verilib.org](https://verilib.org) |
-| CLI | [verilib-cli](https://github.com/Beneficial-AI-Foundation/verilib-cli) | Local repo init, structure files, deploy/pull |
-| Atomizer | [verilib-atomizer](https://github.com/Beneficial-AI-Foundation/verilib-atomizer) | Server-side atomization and processing |
-| Certificates | [local_validate](https://github.com/Beneficial-AI-Foundation/local_validate) | Certificate validation worker |
+| CLI | [verilib-cli](https://github.com/Beneficial-AI-Foundation/verilib-cli) (public) | Auth, init, deploy/pull, local create/atomize/specify/verify |
+| Frontend / API | [verilib-frontend](https://github.com/Beneficial-AI-Foundation/verilib-frontend) | PHP + React UX; MySQL; RabbitMQ publishers; sole cert DB writer |
+| Atomizer | [verilib-atomizer](https://github.com/Beneficial-AI-Foundation/verilib-atomizer) | Upload + atomize workers; S3 + probe Docker; persist atoms |
+| Certificates | [local_validate](https://github.com/Beneficial-AI-Foundation/local_validate) | Probe images + validate/promote workers (RabbitMQ + S3, no DB) |
 
 ## Architecture diagram
 
 ```mermaid
-flowchart TB
-  user[User / Contributor]
-  frontend[verilib-frontend]
+flowchart LR
   cli[verilib-cli]
+  frontend[verilib-frontend]
+  api[VeriLib API / MySQL]
+  mq[RabbitMQ]
+  s3[(S3)]
   atomizer[verilib-atomizer]
   cert[local_validate]
-  api[verilib.org API]
-  science[Science team probe tools]
+  probes[probe-verus / lean / aeneas]
 
-  user --> frontend
-  user --> cli
   cli --> api
   frontend --> api
-  api --> atomizer
-  api --> cert
-  science -.-> atomizer
+  frontend --> mq
+  mq --> atomizer
+  mq --> cert
+  atomizer --> s3
+  atomizer --> probes
+  atomizer --> api
+  cert --> s3
+  cert --> probes
+  cert --> mq
+  mq --> frontend
 ```
 
-## Data flow (summary)
+## Interaction model
 
-1. **Contributor** uses [verilib-cli](../reference/scripts-and-cli.md) to authenticate, initialize a repo, and manage `.verilib/` structure files locally.
-2. **Deploy** pushes structure and metadata to the VeriLib API ([verilib.org](https://verilib.org)).
-3. **Atomizer** processes repositories server-side — atomization, probe integration, JSON mapping.
-4. **local_validate** validates specification and verification certificates (mainnet, testnet, Docker Hub flows).
-5. **Frontend** displays verification status, colors, and library content to users.
+| Path | What happens |
+| --- | --- |
+| **CLI → API** | Deploy / pull structure and metadata; CI often uses `--check-only` / `--no-probe` patterns |
+| **UI upload / reclone** | PHP enqueues `upload.request` (private GitHub tokens on message); atomizer clones → S3 → atomize → MySQL atoms |
+| **UI Certify** | PHP clones cert snapshot, `certificates.status=pending`, `validate.request`; worker runs probe, S3 manifest; PHP marks ready; optional Sepolia then separate mainnet promote |
+| **Probes** | Shared extract tools; atomizer and cert workers both invoke language probe images |
 
-## Science team (out of scope for this hub)
+## Science team (out of scope)
 
-The Beneficial AI Foundation organization hosts many additional repositories for formal verification research:
-
-- **probe**, **probe-verus**, **probe-aeneas** — static analysis and atom extraction
-- **vericoding**, **vericoding-benchmark** — verified coding tools and benchmarks
-- Individual verification projects (Lean, Verus, Dafny, etc.)
-
-Those repos document themselves; this hub indexes the **VeriLib platform** that wraps and serves verified code to the public.
+probe, probe-verus, probe-lean, probe-aeneas, vericoding, benchmarks, and project repos document themselves under [Beneficial-AI-Foundation](https://github.com/Beneficial-AI-Foundation).
 
 ## Related
 
 - [Data flows](data-flows.md)
-- [Processor: Atomizer](../components/processor/atomizer.md)
-- [Certificates: Cert Queue](../components/cert/cert-queue.md)
-- [UX & API: Frontend](../components/ux-api/frontend.md)
+- [System overview](system-overview.md)
+- [Atomizer](../components/processor/atomizer.md)
+- [Cert queue](../components/cert/cert-queue.md)
+- [Frontend](../components/ux-api/frontend.md)
+- [Scripts and CLI](../reference/scripts-and-cli.md)

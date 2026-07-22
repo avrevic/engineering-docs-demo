@@ -61,23 +61,23 @@ Start with a framework workflow and connect your project in minutes.
 
 -   [:material-web: __Frontend__](components/ux-api/frontend.md)
 
-    Web UI at [verilib.org](https://verilib.org) for browsing verified code, managing uploads, and viewing verification status.
+    PHP + React UX at [verilib.org](https://verilib.org): uploads, certify, and `/v2` API — enqueues work for workers.
 
 -   [:material-console-line: __verilib-cli__](reference/scripts-and-cli.md)
 
-    Local auth, repo init, structure files, atomize / specify / verify, and deploy to the VeriLib API.
+    Public Rust CLI: auth, init, deploy/pull, and local create / atomize / specify / verify.
 
 -   [:material-cog-transfer: __Atomizer__](components/processor/atomizer.md)
 
-    Server-side atomization pipeline — probe integration, enrichment, and JSON structure mapping.
+    Upload and atomize RabbitMQ workers — S3, language probes, Schema 2.0 parse, MySQL atoms.
 
 -   [:material-certificate-outline: __Certificates__](components/cert/cert-queue.md)
 
-    Specification and proof certificate validation across mainnet, testnet, and self-service flows.
+    Probe Docker images plus DB-free validate/promote workers (Sepolia, mainnet, Docker Hub).
 
 -   [:material-sitemap: __System map__](architecture/system-map.md)
 
-    How platform repos connect: frontend, CLI, API, atomizer, and validation workers.
+    End-to-end map: CLI and UI → API/queues → atomizer and cert workers.
 
 </div>
 
