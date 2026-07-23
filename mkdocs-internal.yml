@@ -35,6 +35,7 @@ nav:
       - Data flow: components/processor/data-flow.md
       - Queue workers: components/processor/queue-workers.md
       - JSON Mapping: components/processor/json-mapping.md
+      - Atom statuses and colours: components/processor/atom-statuses-and-colours.md
       - Probe upgrading: components/processor/probe-upgrading.md
       - ECR on ECS: components/processor/ecr-on-ecs.md
       - Disk Cleanup: components/processor/disk-cleanup.md
