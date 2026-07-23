@@ -33,6 +33,7 @@ Legacy DB-polling (`main.py`) may still exist in older deployments; production i
 - [Data flow](data-flow.md)
 - [Queue workers](queue-workers.md)
 - [JSON mapping](json-mapping.md) — Schema 2.0 envelope
+- [Atom statuses and colours](atom-statuses-and-colours.md) — verification-status → colour scheme
 - [Probe upgrading](probe-upgrading.md)
 - [ECR on ECS](ecr-on-ecs.md)
 - [Disk cleanup](disk-cleanup.md)

@@ -37,4 +37,5 @@ Probe JSON is expected under the cloned repo at `.verilib/probes/<lang>_*.json` 
 ## Related
 
 - [Atomizer](atomizer.md)
+- [Atom statuses and colours](atom-statuses-and-colours.md) — how `verification-status` / `is-disabled` map to bar and dot colours
 - Upstream README “JSON Format (Schema 2.0)”
